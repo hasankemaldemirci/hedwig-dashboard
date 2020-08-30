@@ -1,4 +1,4 @@
-# hedwig-dashboard
+# Example Dashboard App
 
 ## Project setup
 ```
@@ -20,5 +20,8 @@ yarn build
 yarn lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### env files
+```
+You can always check `.env.example` file to see which env variables you need.
+- Create `.env.local` file to setup env variables for development server.
+```

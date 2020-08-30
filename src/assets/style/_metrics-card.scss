@@ -1,0 +1,91 @@
+.metrics-card {
+  height: 100%;
+  padding: 15px 20px;
+  background-color: $color-bg-cards;
+  box-shadow: $box-shadow-cards;
+  border-radius: 5px;
+  color: #9a9a9a;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 50px;
+      max-width: 50%;
+      height: 50px;
+      border-radius: 50%;
+
+      &--user-count {
+        background: rgb(239, 137, 126);
+        background: linear-gradient(
+          180deg,
+          rgba(239, 137, 126, 1) 0%,
+          rgba(238, 121, 138, 1) 100%
+        );
+      }
+
+      &--download {
+        background: rgb(198, 92, 209);
+        background: linear-gradient(
+          180deg,
+          rgba(198, 92, 209, 1) 0%,
+          rgba(183, 93, 225, 1) 100%
+        );
+      }
+
+      &--view-count {
+        background: rgb(98, 216, 206);
+        background: linear-gradient(
+          180deg,
+          rgba(98, 216, 206, 1) 0%,
+          rgba(77, 176, 223, 1) 100%
+        );
+      }
+
+      &--paid-users {
+        background: rgb(230, 93, 120);
+        background: linear-gradient(
+          180deg,
+          rgba(230, 93, 120, 1) 0%,
+          rgba(223, 73, 69, 1) 100%
+        );
+      }
+    }
+
+    .description {
+      text-align: right;
+
+      &__title {
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      &__count {
+        font-size: 20px;
+        font-weight: 600;
+        color: #fff;
+      }
+    }
+  }
+
+  &__footer {
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #2a2f46;
+
+    button {
+      display: flex;
+      align-items: center;
+      background-color: transparent;
+      color: inherit;
+
+      svg {
+        margin-right: 10px;
+      }
+    }
+  }
+}

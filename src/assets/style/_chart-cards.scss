@@ -1,0 +1,23 @@
+.chart-card {
+  background-color: $color-bg-cards;
+  box-shadow: $box-shadow-cards;
+  border-radius: 5px;
+  padding: 15px 20px;
+  margin-top: 15px;
+
+  h2 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: #fff;
+
+    svg {
+      margin-right: 10px;
+    }
+  }
+
+  &--installs {
+    margin-top: 30px;
+  }
+}
