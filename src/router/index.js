@@ -22,7 +22,16 @@ const routes = [
   {
     path: "/user/profile",
     name: "Profile",
-    component: () => import("../views/Profile.vue")
+    component: () => import("../views/Profile.vue"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "*",
+    meta: {
+      requiresAuth: true
+    }
   }
 ];
 
@@ -32,7 +41,7 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
 
   if (requiresAuth && !auth.currentUser) {

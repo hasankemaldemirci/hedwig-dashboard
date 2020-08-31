@@ -39,10 +39,10 @@ export default {
   }
 
   &__logo {
-    max-width: 245px;
+    max-width: 200px;
 
     @media (max-width: 575px) {
-      max-width: 190px;
+      max-width: 175px;
     }
   }
 

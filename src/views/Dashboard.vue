@@ -4,17 +4,12 @@
     <div class="dashboard__metrics">
       <div class="container">
         <div class="flex-row">
-          <div class="flex-row__column flex-row__column--3">
-            <ActiveUsersCard />
-          </div>
-          <div class="flex-row__column flex-row__column--3">
-            <DownloadsCard />
-          </div>
-          <div class="flex-row__column flex-row__column--3">
-            <SessionDurationCard />
-          </div>
-          <div class="flex-row__column flex-row__column--3">
-            <PaidUsersCard />
+          <div
+            class="flex-row__column flex-row__column--3"
+            v-for="(data, index) in realTimeData"
+            :key="index"
+          >
+            <MetricsCard :data="data" />
           </div>
         </div>
       </div>
@@ -29,31 +24,50 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 // Components
 import NavBar from "../components/NavBar";
-import ActiveUsersCard from "../components/ActiveUsersCard";
-import DownloadsCard from "../components/DownloadsCard";
-import SessionDurationCard from "../components/SessionDurationCard";
-import PaidUsersCard from "../components/PaidUsersCard";
+import MetricsCard from "../components/MetricsCard";
 import DailyActiveUsersChart from "../components/DailyActiveUsersChart";
 import DailyInstallsChart from "../components/DailyInstallsChart";
 
 export default {
   name: "Dashboard",
+  data() {
+    return {
+      timerId: 0
+    };
+  },
   components: {
     NavBar,
-    ActiveUsersCard,
-    DownloadsCard,
-    SessionDurationCard,
-    PaidUsersCard,
+    MetricsCard,
     DailyActiveUsersChart,
     DailyInstallsChart
+  },
+  mounted() {
+    this.fetchRealTimeData();
+    this.timerId = setInterval(this.fetchRealTimeData, 10000);
+  },
+  beforeDestroy() {
+    clearInterval(this.timerId);
+  },
+  computed: {
+    ...mapGetters(["realTimeData"])
+  },
+  methods: {
+    fetchRealTimeData() {
+      this.$store.dispatch("fetchActiveUsersCount");
+      this.$store.dispatch("fetchDownloadsCount");
+      this.$store.dispatch("fetchAvgSessionDuration");
+      this.$store.dispatch("fetchPaidUsersCount");
+    }
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .dashboard {
-  padding-bottom: 30px;
+  padding-bottom: 40px;
 }
 </style>

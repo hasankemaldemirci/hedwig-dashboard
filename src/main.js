@@ -14,11 +14,20 @@ import {
   faRedo,
   faDownload,
   faEye,
-  faChartBar
+  faChartBar,
+  faHandHoldingUsd
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add([faUser, faCaretDown, faRedo, faDownload, faEye, faChartBar]);
+library.add([
+  faUser,
+  faCaretDown,
+  faRedo,
+  faDownload,
+  faEye,
+  faChartBar,
+  faHandHoldingUsd
+]);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 /* FontAwesome icon library */

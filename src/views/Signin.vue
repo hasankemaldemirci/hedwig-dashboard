@@ -37,10 +37,11 @@ export default {
     text-align: center;
 
     .logo {
-      max-width: 85%;
+      max-width: 75%;
       margin-bottom: 60px;
 
       @media (max-width: 767px) {
+        max-width: 50%;
         margin-bottom: 20px;
       }
     }
