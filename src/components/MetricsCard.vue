@@ -1,3 +1,56 @@
+<template>
+  <div
+    :class="{ 'metrics-card': true, 'metrics-card--flashed': isDataChanged }"
+  >
+    <div class="metrics-card__content">
+      <div :class="`icon icon--${data.icon}`">
+        <font-awesome-icon
+          :icon="data.icon"
+          size="lg"
+          :style="{ color: '#fff' }"
+        />
+      </div>
+      <div class="description">
+        <div class="description__title">{{ data.title }}</div>
+        <div class="description__count">{{ data ? data.metric : "-" }}</div>
+      </div>
+    </div>
+    <div class="metrics-card__footer">
+      <button @click="$store.dispatch(data.dispatchEvent)">
+        <font-awesome-icon icon="redo" />
+        {{ data.reloadButtonTitle }}
+      </button>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "MetricsCard",
+  props: {
+    data: null
+  },
+  data() {
+    return {
+      isDataChanged: false
+    };
+  },
+  watch: {
+    data: {
+      handler: function() {
+        this.isDataChanged = true;
+
+        setTimeout(() => {
+          this.isDataChanged = false;
+        }, 150);
+      },
+      deep: true
+    }
+  }
+};
+</script>
+
+<style lang="scss" scoped>
 .metrics-card {
   height: 100%;
   padding: 15px 20px;
@@ -5,6 +58,11 @@
   box-shadow: $box-shadow-cards;
   border-radius: 5px;
   color: #9a9a9a;
+  transition: all ease-in-out 150ms;
+
+  @media (max-width: 767px) {
+    height: 145px;
+  }
 
   &__content {
     display: flex;
@@ -19,7 +77,7 @@
       height: 50px;
       border-radius: 50%;
 
-      &--user-count {
+      &--user {
         background: rgb(239, 137, 126);
         background: linear-gradient(
           180deg,
@@ -37,7 +95,7 @@
         );
       }
 
-      &--view-count {
+      &--eye {
         background: rgb(98, 216, 206);
         background: linear-gradient(
           180deg,
@@ -46,7 +104,7 @@
         );
       }
 
-      &--paid-users {
+      &--hand-holding-usd {
         background: rgb(230, 93, 120);
         background: linear-gradient(
           180deg,
@@ -88,4 +146,10 @@
       }
     }
   }
+
+  &--flashed {
+    background-color: #2f3346;
+    transform: scale(1.035);
+  }
 }
+</style>

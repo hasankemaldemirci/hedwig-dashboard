@@ -17,26 +17,52 @@ const store = new Vuex.Store({
       email: ""
     },
     signinLoading: false,
-    activeUsersCount: "-",
-    downloadsCount: "-",
-    avgSessionDuration: "-",
-    paidUsersCount: "-"
+    realTimeData: {
+      activeUsers: {
+        metric: null,
+        icon: "user",
+        title: "Active Users",
+        reloadButtonTitle: "Live user count",
+        dispatchEvent: "fetchActiveUsersCount"
+      },
+      downloads: {
+        metric: null,
+        icon: "download",
+        title: "Downloads",
+        reloadButtonTitle: "Total install count",
+        dispatchEvent: "fetchDownloadsCount"
+      },
+      avgSessionDuration: {
+        metric: null,
+        icon: "eye",
+        title: "Avg. Session Duration",
+        reloadButtonTitle: "Total view count",
+        dispatchEvent: "fetchAvgSessionDuration"
+      },
+      paidUsers: {
+        metric: null,
+        icon: "hand-holding-usd",
+        title: "Paid Users",
+        reloadButtonTitle: "Total paying user count",
+        dispatchEvent: "fetchPaidUsersCount"
+      }
+    }
   },
   mutations: {
     setUserProfile(state, val) {
       state.userProfile.email = val.email;
     },
     setActiveUsersCount(state, val) {
-      state.activeUsersCount = val;
+      state.realTimeData.activeUsers.metric = val;
     },
     setDownloadsCount(state, val) {
-      state.downloadsCount = val;
+      state.realTimeData.downloads.metric = val;
     },
     setAvgSessionDuration(state, val) {
-      state.avgSessionDuration = val.toFixed(2);
+      state.realTimeData.avgSessionDuration.metric = val.toFixed(2) + " mins";
     },
     setPaidUsersCount(state, val) {
-      state.paidUsersCount = val;
+      state.realTimeData.paidUsers.metric = val;
     }
   },
   actions: {
@@ -48,6 +74,9 @@ const store = new Vuex.Store({
           form.email,
           form.password
         );
+
+        const token = await firebase.auth.currentUser.getIdToken();
+        localStorage.setItem("token", token);
 
         dispatch("fetchUserProfile", user);
       } catch (error) {
@@ -98,17 +127,8 @@ const store = new Vuex.Store({
     signinLoading: state => {
       return state.signinLoading;
     },
-    activeUsersCount: state => {
-      return state.activeUsersCount;
-    },
-    downloadsCount: state => {
-      return state.downloadsCount;
-    },
-    avgSessionDuration: state => {
-      return state.avgSessionDuration;
-    },
-    paidUsersCount: state => {
-      return state.paidUsersCount;
+    realTimeData: state => {
+      return state.realTimeData;
     }
   }
 });
