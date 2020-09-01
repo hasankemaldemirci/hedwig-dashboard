@@ -1,5 +1,6 @@
 # Example Dashboard App
 
+![CI](https://github.com/hasankemaldemirci/hedwig-dashboard/workflows/CI/badge.svg)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=hasankemaldemirci_hedwig-dashboard&metric=alert_status)](https://sonarcloud.io/dashboard?id=hasankemaldemirci_hedwig-dashboard)
 
 ## Project setup
