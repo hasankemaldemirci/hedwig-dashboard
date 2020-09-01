@@ -1,5 +1,7 @@
 # Example Dashboard App
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=hasankemaldemirci_hedwig-dashboard&metric=alert_status)](https://sonarcloud.io/dashboard?id=hasankemaldemirci_hedwig-dashboard)
+
 ## Project setup
 ```
 yarn install
