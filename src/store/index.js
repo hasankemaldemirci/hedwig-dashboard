@@ -75,9 +75,6 @@ const store = new Vuex.Store({
           form.password
         );
 
-        const token = await firebase.auth.currentUser.getIdToken();
-        localStorage.setItem("token", token);
-
         dispatch("fetchUserProfile", user);
       } catch (error) {
         alert(error.message);
@@ -89,15 +86,13 @@ const store = new Vuex.Store({
       commit("setUserProfile", user);
 
       if (window.location.pathname === "/signin") {
-        window.location.href = "/";
+        router.push("/");
       }
     },
     async signout({ commit }) {
       await firebase.auth.signOut();
 
       commit("setUserProfile", {});
-
-      localStorage.removeItem("token");
 
       router.push("/signin");
     },
